@@ -1,0 +1,30 @@
+from tkinter import *
+
+class Calculator:
+    def __init__(self, master):
+        self.master = master
+        master.title("Calculator")
+
+        # Create the display
+        self.display = Entry(master, font=("Helvetica", 24), justify="right", bd=30, bg="#eee")
+        self.display.grid(columnspan=4)
+
+        # Create the buttons
+        self.clear_button = Button(master, text="Clear", font=("Helvetica", 14), bg="#eee", command=self.clear)
+        self.clear_button.grid(row=1, column=0)
+
+        self.enter_button = Button(master, text="Enter", font=("Helvetica", 14), bg="#eee", command=self.enter)
+        self.enter_button.grid(row=1, column=3)
+
+    def clear(self):
+        self.display.delete(0, END)
+
+    def enter(self):
+        result = eval(self.display.get())
+        self.display.delete(0, END)
+        self.display.insert(0, result)
+
+root = Tk()
+calculator = Calculator(root)
+root.mainloop()
+
